@@ -22,3 +22,7 @@ td, tr, th
     min-width: 200px;
     text-align: center;
 }
+::-webkit-input-placeholder 
+{
+   text-align: center;
+}

@@ -11,13 +11,14 @@ Class Seriale
     
     function dodaj($serial)
     {
-        $q = 'Insert Into lista_seriali(nazwa_serialu) Values('.mysqli_real_escape_string($this->uchwyt, $serial).';';
+        $var = $serial;
+        $q = 'Insert Into `lista_seriali`(`nazwa_serialu`) Values("'.mysqli_real_escape_string($this->uchwyt, $serial).'");';
         $result = mysqli_query($this->uchwyt, $q);
     }
     
     function usun($id)
     {
-        $q = 'Delete From lista_seriali Where $id ='.intval($id).'limit 1;';
+        $q = 'DELETE FROM `lista_seriali` WHERE id='.intval($id);
         $result = mysqli_query($this->uchwyt, $q);
     }
     
@@ -28,13 +29,20 @@ Class Seriale
     
     function wyswietl()
     {
-        $q = 'SELECT * FROM `lista_seriali`';
+        $q = 'SELECT * FROM `lista_seriali` ORDER BY nazwa_serialu';
         $result = mysqli_query($this->uchwyt, $q);
         while ($ser = mysqli_fetch_assoc($result))
         {
             $lista[] = $ser;
         }
         return($lista);
+    }
+    
+    function update($sezon, $id)
+    {
+        $q = 'UPDATE `lista_seriali` SET `sezon`='.intval($sezon).' WHERE id='.intval($id);
+       // $q = 'UPDATE `lista_seriali` SET `sezon`='.intval($sezon).'WHERE id='.intval($id);
+        $result = mysqli_query($this->uchwyt, $q); 
     }
 }
 

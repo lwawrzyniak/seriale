@@ -13,20 +13,47 @@
             <div class="lista">
                  <h1> Lista Seriali </h1>
             </div>
-            
-            <div class="rectangle">
-              
+        
+        </header>
+        
+               
+            <?php
+            require_once 'seriale_silnik.php';
+                               
+                $s = new Seriale ("localhost", "root", "", "seriale");
+                                
+                if (isset($_POST['serial']))
+                {
+                   $s -> dodaj($_POST['serial']);
+                   header('Location: index.php');
+                }
+               
+                if (isset($_GET['usun']))
+                {
+                   $s -> usun($_GET['id']);
+                }
+               
+                
+                if (isset($_GET['update']))
+                {
+                   $s->update($_POST['sezon'],$_GET['id']);
+                }
+                //var_dump($_POST['sezon']);
+                //var_dump($_GET['id']);
+            ?>   
+                
                 <div class="lista">
-                <form action ="index.php?akcja=dodaj" method="post">
+                <form action ="index.php" method="POST">
                 Nowy Serial: <input type = "text" name="serial" style="width: 400px;"/>
-                <input type="submit" value="Dodaj"/> 
-                </div>  
-        </header> 
+                <input type="submit" value="Dodaj"/>
+                </form>
+                </div> 
+                
+        
         
                 <?php
-                require_once 'seriale_silnik.php';
-                
-                $s = new Seriale ("localhost", "root", "", "seriale");
+
+
                 $wyswietl = $s -> wyswietl();
                
                     echo "<table><tr>".
@@ -35,7 +62,7 @@
                             "<td>Odcinek</td>".
                             "<td>Platforma</td>".
                             "<td>Uwagi</td>".
-                            "<td>Stan</td>".
+                            "<td>Zakonczony</td>".
                           '</tr></table>';
                 
                 
@@ -43,13 +70,17 @@
                 {
                     echo "<table><tr>".
                             "<td>".$wiersz['nazwa_serialu']."</td>".
-                            "<td>".$wiersz['sezon']."</td>".
+                            "<form action ='index.php?update&id=".$wiersz['id']."' method='POST'>".
+                            "<td><input type = 'number' name='sezon' placeholder='".$wiersz['sezon']."'</td>".
                             "<td>".$wiersz['odcinek']."</td>".
                             "<td>".$wiersz['platforma']."</td>".
                             "<td>".$wiersz['uwagi']."</td>".
                             "<td>".$wiersz['stan']."</td>".
-                          '</tr></table>';
-                }
+                            "<td><a href = index.php?usun&id=".$wiersz['id'].">usun</a></td>".
+                            "<td> <input type='submit' value='Update'/></td></form>".
+                            '</tr></table>';
+
+                 }
    
                ?>
         
