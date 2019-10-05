@@ -36,10 +36,9 @@
                 
                 if (isset($_GET['update']))
                 {
-                   $s->update($_POST['sezon'],$_GET['id']);
+                   $s->update($_POST['sezon'],$_POST['odcinek'],$_POST['platforma'],$_POST['uwagi'],$_POST['stan'],$_GET['id']);
                 }
-                //var_dump($_POST['sezon']);
-                //var_dump($_GET['id']);
+
             ?>   
                 
                 <div class="lista">
@@ -71,11 +70,20 @@
                     echo "<table><tr>".
                             "<td>".$wiersz['nazwa_serialu']."</td>".
                             "<form action ='index.php?update&id=".$wiersz['id']."' method='POST'>".
-                            "<td><input type = 'number' name='sezon' placeholder='".$wiersz['sezon']."'</td>".
-                            "<td>".$wiersz['odcinek']."</td>".
-                            "<td>".$wiersz['platforma']."</td>".
-                            "<td>".$wiersz['uwagi']."</td>".
-                            "<td>".$wiersz['stan']."</td>".
+                            "<td><input type = 'number' name='sezon' value='".$wiersz['sezon']."'</td>".
+                            
+                            "<form action ='index.php?update&id=".$wiersz['id']."' method='POST'>".
+                            "<td><input type = 'number' name='odcinek' value='".$wiersz['odcinek']."'</td>".
+  
+                            "<form action ='index.php?update&id=".$wiersz['id']."' method='POST'>".
+                            "<td><input type = 'text' name='platforma' value='".$wiersz['platforma']."'</td>".
+
+                            "<form action ='index.php?update&id=".$wiersz['id']."' method='POST'>".
+                            "<td><input type = 'text' name='uwagi' value='".$wiersz['uwagi']."'</td>".
+                            
+                            "<form action ='index.php?update&id=".$wiersz['id']."' method='POST'>".
+                            "<td><input type = 'text' name='stan' value='".$wiersz['stan']."'</td>".
+                            
                             "<td><a href = index.php?usun&id=".$wiersz['id'].">usun</a></td>".
                             "<td> <input type='submit' value='Update'/></td></form>".
                             '</tr></table>';

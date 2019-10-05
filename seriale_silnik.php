@@ -38,9 +38,15 @@ Class Seriale
         return($lista);
     }
     
-    function update($sezon, $id)
+    function update($sezon, $odcinek, $platforma, $uwagi, $stan, $id)
     {
-        $q = 'UPDATE `lista_seriali` SET `sezon`='.intval($sezon).' WHERE id='.intval($id);
+        $q = 'UPDATE `lista_seriali` SET '
+                . '`sezon`='.intval($sezon).','
+                . '`odcinek`='.intval($odcinek).','
+                . '`platforma`=("'.mysqli_real_escape_string($this->uchwyt, $platforma).'"),'
+                . '`uwagi`=("'.mysqli_real_escape_string($this->uchwyt, $uwagi).'"),'
+                . '`stan`=("'.mysqli_real_escape_string($this->uchwyt, $stan).'")'
+                . 'WHERE id='.intval($id);
        // $q = 'UPDATE `lista_seriali` SET `sezon`='.intval($sezon).'WHERE id='.intval($id);
         $result = mysqli_query($this->uchwyt, $q); 
     }
