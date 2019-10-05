@@ -47,8 +47,7 @@ Class Seriale
                 . '`uwagi`=("'.mysqli_real_escape_string($this->uchwyt, $uwagi).'"),'
                 . '`stan`=("'.mysqli_real_escape_string($this->uchwyt, $stan).'")'
                 . 'WHERE id='.intval($id);
-       // $q = 'UPDATE `lista_seriali` SET `sezon`='.intval($sezon).'WHERE id='.intval($id);
-        $result = mysqli_query($this->uchwyt, $q); 
+         $result = mysqli_query($this->uchwyt, $q); 
     }
 }
 

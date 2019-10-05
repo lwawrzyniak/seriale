@@ -32,8 +32,7 @@
                 {
                    $s -> usun($_GET['id']);
                 }
-               
-                
+                               
                 if (isset($_GET['update']))
                 {
                    $s->update($_POST['sezon'],$_POST['odcinek'],$_POST['platforma'],$_POST['uwagi'],$_POST['stan'],$_GET['id']);
@@ -55,14 +54,16 @@
 
                 $wyswietl = $s -> wyswietl();
                
-                    echo "<table><tr>".
+                    echo "<div class = 'tabela'>".
+                            "<table><tr>".
                             "<td>Nazwa serialu</td>".
                             "<td>Sezon</td>".
                             "<td>Odcinek</td>".
                             "<td>Platforma</td>".
                             "<td>Uwagi</td>".
                             "<td>Zakonczony</td>".
-                          '</tr></table>';
+                            '</tr></table>'.
+                            "</div>";
                 
                 
                 foreach ($wyswietl as $wiersz)
