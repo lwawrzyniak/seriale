@@ -19,7 +19,8 @@ td, tr, th
 { 
     padding: 5px;
     border: 1px solid black;
-    min-width: 200px;
+    min-width: 220px;
+	max-width: 200px;
     text-align: center;
 }
 
